@@ -1,0 +1,51 @@
+demo = open("demo.txt", "w")
+USER_BALANCE = 20000
+s = 4594
+Balancesheet = 'You withdraw'
+
+PIN = int(input("Enter your PIN: "))
+if PIN == s:
+    while True:
+        if PIN == s:
+            print("\nYour current balance is: Rs " + str(USER_BALANCE))
+            print("Press 1 For Withdrawal")
+            print("Press 2 To Show Previous Transaction History ")
+            print("Press 3 To Cancel Transaction")
+            answer = input("Enter your option ? ")
+
+            if answer=="1":
+                y = (input("How much would you like to withdraw ? "))
+                if float(y) <= USER_BALANCE :
+                    USER_BALANCE -= float(y)
+                    demo= open("demo.txt", "a+")
+                    demo.write("You withdraw an amount of " + y + "\n"+ "Your current balance is " + str(USER_BALANCE) + "\n")
+                    continue
+                else:
+                     print("Insufficient balance.")
+
+            elif answer == "2":
+                demo= open("demo.txt", "r")
+                readfile = demo.read()
+                if Balancesheet in readfile :
+                    demo= open("demo.txt", "r")
+                    print(demo.read())
+                else:
+                     print("Transaction history is not found")
+                     demo.close()
+            elif answer == "3":
+                PIN=int(input("Enter PIN: "))
+                if PIN == s:
+                    continue
+                else:
+                    print("Incorrect Pin")
+                    break
+
+            else:
+                print("Please choose correct option")
+                continue
+else:
+     print("Incorrect Pin")
+
+
+
+
